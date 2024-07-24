@@ -7,8 +7,8 @@ import com.william.springboot.app.administradorclientes.springboot_jpa.springboo
 
 public interface ClienteService {
     List<Cliente> findAll();
-    Optional<Cliente> getById(Integer id);
+    Optional<Cliente> getById(Long id);
     Cliente save(Cliente cliente);
-    Optional<Cliente> update(Cliente cliente);
-    Optional<Cliente> delete(Integer id);
+    Optional<Cliente> update(Long id, Cliente cliente);
+    Optional<Cliente> delete(Long id);
 }

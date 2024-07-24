@@ -18,7 +18,7 @@ public class ClienteServiceImpl implements ClienteService{
 
     @Override
     @Transactional
-    public Optional<Cliente> delete(Integer id) {
+    public Optional<Cliente> delete(Long id) {
         Optional<Cliente> cliente = clienteRepository.findById(id);
         if(cliente.isPresent()){
             clienteRepository.deleteById(id);
@@ -34,21 +34,20 @@ public class ClienteServiceImpl implements ClienteService{
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Cliente> getById(Integer id) {
+    public Optional<Cliente> getById(Long id) {
         return clienteRepository.findById(id);
     }
 
     @Override
     @Transactional
     public Cliente save(Cliente cliente) {
-        clienteRepository.save(cliente);
-        return null;
+        return clienteRepository.save(cliente);
     }
 
     @Override
     @Transactional
-    public Optional<Cliente> update(Cliente cliente) {
-        Optional<Cliente> clienteOptional = clienteRepository.findById(cliente.getId());
+    public Optional<Cliente> update(Long id, Cliente cliente) {
+        Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         if(clienteOptional.isPresent()){
             Cliente clienteDb = clienteOptional.orElseThrow();
             clienteDb.setNombre(cliente.getNombre());

@@ -7,6 +7,6 @@ import com.william.springboot.app.administradorclientes.springboot_jpa.springboo
 public interface ClienteEmpresaService {
     List<ClienteEmpresaDTO> findAllClienteEmpresa();
     boolean saveClienteEmpresa(ClienteEmpresaDTO clienteEmpresaDTO);
-    boolean deleteClienteEmpresa(Integer clienteId);
-    boolean updateClienteEmpresa(ClienteEmpresaDTO clienteEmpresaDTO);
+    boolean deleteClienteEmpresa(Long clienteId);
+    boolean updateClienteEmpresa(Long id, ClienteEmpresaDTO clienteEmpresaDTO);
 }

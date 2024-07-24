@@ -18,7 +18,7 @@ public class EmpresaServiceImpl implements EmpresaService{
 
     @Override
     @Transactional
-    public Optional<Empresa> delete(Integer id) {
+    public Optional<Empresa> delete(Long id) {
         Optional<Empresa> empresa = empresaRepository.findById(id);
         if(empresa.isPresent()){
             empresaRepository.deleteById(id);
@@ -34,27 +34,32 @@ public class EmpresaServiceImpl implements EmpresaService{
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Empresa> getById(Integer id) {
+    public Optional<Empresa> getById(Long id) {
         return empresaRepository.findById(id);
     }
 
     @Override
     @Transactional
     public Empresa save(Empresa empresa) {
-        empresaRepository.save(empresa);
-        return null;
+        return empresaRepository.save(empresa);
     }
 
     @Override
     @Transactional
-    public Optional<Empresa> update(Empresa empresa) {
-        Optional<Empresa> empresaOptional = empresaRepository.findById(empresa.getId());
+    public Optional<Empresa> update(Long id, Empresa empresa) {
+        Optional<Empresa> empresaOptional = empresaRepository.findById(id);
         if(empresaOptional.isPresent()){
             Empresa empresaDb = empresaOptional.orElseThrow();
             empresaDb.setNombre(empresa.getNombre());
             empresaDb.setDireccion(empresa.getDireccion());
         }
         return empresaOptional;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Empresa> findByNombre(String nombre){
+        return empresaRepository.findByNombre(nombre);
     }
 
     //pendiente modificar la lista de usuarios de una empresa

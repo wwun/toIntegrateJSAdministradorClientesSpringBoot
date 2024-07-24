@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import jakarta.annotation.PostConstruct;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,10 +21,10 @@ public class Empresa {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @NotBlank(message = "${nombre.NotBlank}")
-    @Size(min=1, max=200, message = "${nombre.Size}")
+    @NotBlank(message = "{nombre.NotBlank}")
+    @Size(min=1, max=200, message = "{nombre.Size}")
     private String nombre;
 
     @Value("${empresa.direccion}")
@@ -37,11 +35,21 @@ public class Empresa {
     //@JsonBackReference
     private List<Cliente> listaClientes;
 
-    public Integer getId() {
+    public Empresa() {
+        this.direccion = "San Isidro";
+    }
+
+    @PostConstruct
+    public void init(){ //otra opción para insertar valor por defecto
+        if(this.direccion==null)
+            this.direccion = "San Isidro";
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
