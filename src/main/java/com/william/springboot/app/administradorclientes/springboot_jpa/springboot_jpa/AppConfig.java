@@ -6,5 +6,4 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:staticMessages.properties")
 public class AppConfig {
-
 }

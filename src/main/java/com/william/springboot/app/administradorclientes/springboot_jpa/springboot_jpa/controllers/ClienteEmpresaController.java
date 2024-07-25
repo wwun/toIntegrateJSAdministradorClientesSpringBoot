@@ -55,10 +55,10 @@ public class ClienteEmpresaController {
         }
 
         //se ha almacenado la respuesta en boolean porque maneja dos Optional, la de Cliente y Empresa, si fuera solo uno se podría devolver ese optional y la respuesta sería más directa
-        if(clienteEmpresaService.updateClienteEmpresa(id, clientesEmpresaDTO))
-            return ResponseEntity.status(HttpStatus.CREATED).body(Optional.of(clientesEmpresaDTO).orElseThrow());
+        //if(clienteEmpresaService.updateClienteEmpresa(id, clientesEmpresaDTO))
+        return ResponseEntity.status(HttpStatus.CREATED).body(Optional.of(clientesEmpresaDTO).orElseThrow());
         
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        //return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @DeleteMapping("{id}")
